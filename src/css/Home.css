@@ -1,0 +1,39 @@
+/* Animasi untuk teks yang bergerak masuk dari kiri */
+.role-enter {
+  transform: translateX(-100%);  /* Mulai dari luar kiri */
+  opacity: 0;  /* Mulai transparan */
+  animation: enterAnimation 1s forwards; /* Menggunakan animasi enterAnimation */
+}
+
+/* Animasi untuk teks yang keluar ke kanan */
+.role-exit {
+  transform: translateX(100%);  /* Bergerak keluar ke kanan */
+  opacity: 0;  /* Menjadi transparan */
+  animation: exitAnimation 1s forwards; /* Menggunakan animasi exitAnimation */
+}
+
+/* Definisikan animasi "enter" (masuk dari kiri) */
+@keyframes enterAnimation {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Definisikan animasi "exit" (keluar ke kanan) */
+@keyframes exitAnimation {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+

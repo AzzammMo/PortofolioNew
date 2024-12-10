@@ -1,0 +1,27 @@
+/* Animasi shake */
+.animate-shake {
+    animation: smooth-shake 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes smooth-shake {
+    0% {
+        top: 0;
+        transform: rotate(0deg); /* Mulai dengan rotasi 0 derajat */
+    }
+    25% {
+        top: -6px; /* Posisi naik sedikit lebih banyak */
+        transform: rotate(6deg); /* Rotasi lebih kuat ke kanan */
+    }
+    50% {
+        top: 0;
+        transform: rotate(0deg); /* Kembali ke posisi normal */
+    }
+    75% {
+        top: 6px; /* Posisi turun sedikit lebih banyak */
+        transform: rotate(-6deg); /* Rotasi lebih kuat ke kiri */
+    }
+    100% {
+        top: 0;
+        transform: rotate(0deg); /* Kembali ke posisi normal */
+    }
+}
