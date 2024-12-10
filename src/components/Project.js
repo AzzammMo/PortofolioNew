@@ -1,65 +1,82 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS CSS
-
+import sorry from './assets/sorry.png'; // Image for the modal
 import project5 from './assets/project5.png';
+import project2 from './assets/project2.png';
+import project3 from './assets/project3.png';
+import project1 from './assets/project1.png';
 
 // Dummy project data
 const projects = [
   {
     id: 1,
-    title: 'Project 1',
-    description: 'A web application built with React.js to manage tasks efficiently.',
-    image: '/assets/project1.png', // Ganti dengan gambar proyek Anda
+    title: 'Website - SobatTani',
+    description: 'solutions for creating agricultural regeneration by realizing the competitiveness of young farmers progressing through food and feed technology available on this website.',
+    image: project1,
     link: 'https://github.com/username/project1',
   },
   {
     id: 2,
-    title: 'Project 2',
-    description: 'An e-commerce platform built using React and Node.js for full-stack functionality.',
-    image: '/assets/project2.png', // Ganti dengan gambar proyek Anda
+    title: 'Website - Inventy',
+    description: 'suppliers of necessities from factories directly to intermediary shops without any benefit so that people can enjoy affordable distribution prices for re-commercial use.',
+    image: project2,
     link: 'https://github.com/username/project2',
   },
   {
     id: 3,
-    title: 'Project 3',
-    description: 'A data visualization dashboard using D3.js and React to analyze sales data.',
-    image: '/assets/project3.png', // Ganti dengan gambar proyek Anda
+    title: 'Website - Monitoring TPS Surabaya',
+    description: 'This landfill monitoring is assumed to be the final disposal of community waste which will be useful as a forum for information in choosing a waste disposal site.',
+    image: project3,
     link: 'https://github.com/username/project3',
   },
   {
     id: 4,
     title: 'Project 4',
     description: 'A mobile app developed with React Native for real-time chat functionality.',
-    image: '/assets/project4.png', // Ganti dengan gambar proyek Anda
+    image: '/assets/project4.png',
     link: 'https://github.com/username/project4',
   },
   {
     id: 5,
     title: 'UI Design - HydrateX',
-    description: 'An AI-powered recommendation system using Python and TensorFlow.',
-    image: project5, // Ganti dengan gambar proyek Anda
+    description: 'mockup design for a smart hydration application that can overcome the lack of hydration in humans as a personal reminder.',
+    image: project5,
     link: 'https://github.com/username/project5',
   },
   {
     id: 6,
     title: 'Project 6',
     description: 'A social media application built with React.js and Firebase.',
-    image: '/assets/project6.png', // Ganti dengan gambar proyek Anda
+    image: '/assets/project6.png',
     link: 'https://github.com/username/project6',
   },
 ];
 
-const Experience = ({ isDarkMode }) => {
+const Project = ({ isDarkMode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
-  // Inisialisasi AOS
+  // Initialize AOS (Animate On Scroll)
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Durasi animasi
-      easing: 'ease-in-out', // Easing animasi
-      once: true, // Animasi hanya dilakukan sekali
+      duration: 1000, // Duration of the animation
+      easing: 'ease-in-out', // Easing function
+      once: true, // Animation happens only once
+      offset: 200, // Offset to trigger animation a little earlier or later
     });
+
+    // Refresh AOS on window resize to trigger animations again for responsiveness
+    window.addEventListener('resize', () => {
+      AOS.refresh();
+    });
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener('resize', () => {
+        AOS.refresh();
+      });
+    };
   }, []);
 
   // Function to go to the next project in slideshow
@@ -72,8 +89,18 @@ const Experience = ({ isDarkMode }) => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
   };
 
+  // Function to open the modal
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <section id="experience" className={`p-8 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <section id="Project" className={`p-8 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`} data-aos="fade-up">
       <h2 className={`text-3xl font-bold text-center mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} data-aos="fade-up">
         Projects
       </h2>
@@ -83,34 +110,32 @@ const Experience = ({ isDarkMode }) => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className={`relative group overflow-hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-blue-500`}
+            className={`relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-blue-500 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
             data-aos="fade-up"
           >
             {/* Project Image */}
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-48 object-contain rounded-t-lg" // Make sure image is contained without cutting off
+              className="w-full h-48 object-contain rounded-t-lg" // Ensure image is contained without cutting off
             />
 
             {/* Project Content */}
             <div className="p-4">
-              <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-blue-600'} mb-2`}>
+              <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-blue-600'} mb-2`} data-aos="fade-up">
                 {project.title}
               </h3>
-              <p className={`text-sm mb-4 ${isDarkMode ? 'text-black' : 'text-gray-700'}`}> {/* Ensure text is readable in dark mode */}
+              <p className={`text-sm mb-4 ${isDarkMode ? 'text-white' : 'text-gray-700'}`} data-aos="fade-up">
                 {project.description}
               </p>
 
-              {/* Link to Project */}
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* Button to open modal */}
+              <button
+                onClick={openModal}
                 className="inline-block bg-blue-600 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300"
               >
                 View Project
-              </a>
+              </button>
             </div>
           </div>
         ))}
@@ -120,8 +145,8 @@ const Experience = ({ isDarkMode }) => {
       <div className="sm:hidden relative w-full overflow-hidden">
         <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {projects.map((project) => (
-            <div key={project.id} className="w-full flex-shrink-0 p-4">
-              <div className={`bg-white rounded-lg shadow-lg overflow-hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`} data-aos="fade-up">
+            <div key={project.id} className="w-full flex-shrink-0 p-4" data-aos="fade-up">
+              <div className={`rounded-lg shadow-lg overflow-hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
                 {/* Project Image */}
                 <img
                   src={project.image}
@@ -131,23 +156,20 @@ const Experience = ({ isDarkMode }) => {
 
                 {/* Project Content */}
                 <div className="p-4">
-                  <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-blue-600'} mb-2`}>
+                  <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-blue-600'} mb-2`} data-aos="fade-up">
                     {project.title}
                   </h3>
-                  {/* Fix for mobile dark mode */}
-                  <p className={`text-sm mb-4 ${isDarkMode ? 'text-black' : 'text-gray-900'}`}> {/* Black text in dark mode for readability */}
+                  <p className={`text-sm mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} data-aos="fade-up">
                     {project.description}
                   </p>
 
-                  {/* Link to Project */}
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-block bg-blue-600 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300`}
+                  {/* Button to open modal */}
+                  <button
+                    onClick={openModal}
+                    className="inline-block bg-blue-600 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300"
                   >
                     View Project
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -172,8 +194,35 @@ const Experience = ({ isDarkMode }) => {
           </button>
         </div>
       </div>
+
+      {/* Modal for displaying image and message */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+            {/* Image inside modal */}
+            <img
+              src={sorry} // Image imported from assets
+              alt="Notification"
+              className="w-full h-48 object-contain mb-4 rounded-lg"
+            />
+
+            <h2 className="text-2xl font-bold mb-4">Project Source Code</h2>
+            <p className="mb-4">If you'd like to request the source code, feel free to contact me!</p>
+            <p className="mb-4">-Azzam</p>
+            <p className="mb-4">Thank you!</p>
+
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="mt-4 w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-all duration-300"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
-export default Experience;
+export default Project;
