@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS CSS
-import sorry from './assets/sorry.png'; // Image for the modal
 import project5 from './assets/project5.png';
 import project2 from './assets/project2.png';
 import project3 from './assets/project3.png';
 import project1 from './assets/project1.png';
+import project4 from './assets/project4.png';
+import project6 from './assets/project6.png';
+
 
 // Dummy project data
 const projects = [
@@ -32,23 +34,25 @@ const projects = [
   },
   {
     id: 4,
-    title: 'Project 4',
-    description: 'A mobile app developed with React Native for real-time chat functionality.',
-    image: '/assets/project4.png',
+    title: 'Website - Absensi Face Recognition GPS',
+    description: 'The employee attendance website uses camera scans and the QR code will be generated automatically and detects whereabouts via GPS, making it easier for employees to take attendance quickly, easily and efficiently.',
+    image: project4,
     link: 'https://github.com/username/project4',
   },
   {
     id: 5,
     title: 'UI Design - HydrateX',
-    description: 'mockup design for a smart hydration application that can overcome the lack of hydration in humans as a personal reminder.',
+    description: `This website is designed to help users in regulating water levels in their bodies effectively
+  while monitoring other body health metrics such as heart rate, calories, and sleeping time. By utilizing the latest technology, HydrateX will provide a comprehensive solution to support a healthy and active lifestyle.`,
     image: project5,
     link: 'https://github.com/username/project5',
   },
+  
   {
     id: 6,
-    title: 'Project 6',
-    description: 'A social media application built with React.js and Firebase.',
-    image: '/assets/project6.png',
+    title: 'Website - E-RCE',
+    description: 'emergency services for people who need help such as traffic accidents, fires, and ambulance services. Apart from that, this application can also be an information system for organizations operating in the humanitarian sector such as PMI, PSC, and other private organizations.',
+    image: project6,
     link: 'https://github.com/username/project6',
   },
 ];
@@ -56,6 +60,7 @@ const projects = [
 const Project = ({ isDarkMode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [modalImage, setModalImage] = useState(null); // State for the image that is clicked
 
   // Initialize AOS (Animate On Scroll)
   useEffect(() => {
@@ -89,14 +94,16 @@ const Project = ({ isDarkMode }) => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
   };
 
-  // Function to open the modal
-  const openModal = () => {
+  // Function to open the modal with clicked image
+  const openModal = (image) => {
+    setModalImage(image);
     setIsModalOpen(true);
   };
 
   // Function to close the modal
   const closeModal = () => {
     setIsModalOpen(false);
+    setModalImage(null); // Reset the image when modal is closed
   };
 
   return (
@@ -117,7 +124,8 @@ const Project = ({ isDarkMode }) => {
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-48 object-contain rounded-t-lg" // Ensure image is contained without cutting off
+              className="w-full h-48 object-contain rounded-t-lg cursor-pointer"
+              onClick={() => openModal(project.image)} // Click handler to open the modal
             />
 
             {/* Project Content */}
@@ -130,12 +138,7 @@ const Project = ({ isDarkMode }) => {
               </p>
 
               {/* Button to open modal */}
-              <button
-                onClick={openModal}
-                className="inline-block bg-blue-600 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300"
-              >
-                View Project
-              </button>
+        
             </div>
           </div>
         ))}
@@ -151,7 +154,8 @@ const Project = ({ isDarkMode }) => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-contain rounded-t-lg" // Ensure image fits without being cropped
+                  className="w-full h-48 object-contain rounded-t-lg cursor-pointer"
+                  onClick={() => openModal(project.image)} // Click handler for mobile
                 />
 
                 {/* Project Content */}
@@ -164,12 +168,7 @@ const Project = ({ isDarkMode }) => {
                   </p>
 
                   {/* Button to open modal */}
-                  <button
-                    onClick={openModal}
-                    className="inline-block bg-blue-600 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-300"
-                  >
-                    View Project
-                  </button>
+                 
                 </div>
               </div>
             </div>
@@ -195,21 +194,16 @@ const Project = ({ isDarkMode }) => {
         </div>
       </div>
 
-      {/* Modal for displaying image and message */}
+      {/* Modal for displaying image in detail */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+          <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl w-full">
             {/* Image inside modal */}
             <img
-              src={sorry} // Image imported from assets
-              alt="Notification"
-              className="w-full h-48 object-contain mb-4 rounded-lg"
+              src={modalImage} // Display the image clicked on the project card
+              alt="Project Detail"
+              className="w-full h-auto object-contain mb-4 rounded-lg"
             />
-
-            <h2 className="text-2xl font-bold mb-4">Project Source Code</h2>
-            <p className="mb-4">If you'd like to request the source code, feel free to contact me!</p>
-            <p className="mb-4">-Azzam</p>
-            <p className="mb-4">Thank you!</p>
 
             {/* Close Button */}
             <button

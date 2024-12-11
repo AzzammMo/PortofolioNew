@@ -50,12 +50,12 @@ const About = ({ isDarkMode }) => {
         >
           <h2 className="text-3xl font-bold text-blue-600">About Me</h2>
           <p className="mt-4">
-            I am Azzam, a dedicated web specializing in modern frameworks and technologies. 
-            I work with PHP Native, Laravel, React.js, and Next.js to build efficient, responsive web applications. 
+            I am Azzam, a dedicated web specializing in modern frameworks and technologies.
+            I work with PHP Native, Laravel, React.js, and Next.js to build efficient, responsive web applications.
             Additionally, I use Flutter to create cross-platform mobile apps.
           </p>
           <p className="mt-4">
-            Passionate about delivering high-quality solutions, I continually learn and adapt to the latest industry 
+            Passionate about delivering high-quality solutions, I continually learn and adapt to the latest industry
             trends. My goal is to ensure seamless and innovative user experiences while transforming ideas into reality.
           </p>
         </div>
@@ -96,15 +96,15 @@ const About = ({ isDarkMode }) => {
           {/* Text */}
           <div className="text-center md:text-left max-w-md">
             <h4 className="text-xl font-semibold text-blue-600">Web Development</h4>
-            <p className={`text-gray-700 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              I transform ideas into functional and visually stunning web solutions. Leveraging tools like React.js, 
-              Laravel, and Next.js, I create responsive websites that are optimized for speed, scalability, and seamless 
+            <p className={`text-gray-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              I transform ideas into functional and visually stunning web solutions. Leveraging tools like React.js,
+              Laravel, and Next.js, I create responsive websites that are optimized for speed, scalability, and seamless
               user experiences. Whether it's an interactive dashboard or a complex e-commerce platform, I deliver with precision.
             </p>
           </div>
         </div>
 
-        {/* Data Analysis */}
+
         <div
           className="flex flex-col-reverse md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8"
           data-aos="fade-left"
@@ -112,9 +112,9 @@ const About = ({ isDarkMode }) => {
           {/* Text */}
           <div className="text-center md:text-left max-w-md">
             <h4 className="text-xl font-semibold text-blue-600">Data Analysis</h4>
-            <p className={`text-gray-700 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              I uncover insights hidden within data to empower decision-making. Using Python, SQL, and Power BI, 
-              I analyze trends, visualize findings, and create compelling dashboards that tell a story. From business 
+            <p className={`text-gray-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              I uncover insights hidden within data to empower decision-making. Using Python, SQL, and Power BI,
+              I analyze trends, visualize findings, and create compelling dashboards that tell a story. From business
               intelligence to operational optimizations, I deliver data-driven results with clarity.
             </p>
           </div>
@@ -126,7 +126,7 @@ const About = ({ isDarkMode }) => {
           </div>
         </div>
 
-        {/* UI/UX Design */}
+
         <div
           className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8"
           data-aos="fade-up"
@@ -140,9 +140,9 @@ const About = ({ isDarkMode }) => {
           {/* Text */}
           <div className="text-center md:text-left max-w-md">
             <h4 className="text-xl font-semibold text-blue-600">UI/UX Design</h4>
-            <p className={`text-gray-700 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              My goal is to craft designs that not only look great but also feel intuitive. Using tools like Figma 
-              and Adobe XD, I create wireframes, prototypes, and polished interfaces. By balancing aesthetics and 
+            <p className={`text-gray-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              My goal is to craft designs that not only look great but also feel intuitive. Using tools like Figma
+              and Adobe XD, I create wireframes, prototypes, and polished interfaces. By balancing aesthetics and
               functionality, I ensure every user interaction is seamless and delightful.
             </p>
           </div>

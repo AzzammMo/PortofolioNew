@@ -11,6 +11,8 @@ import image7 from './assets/image7.jpg';
 import image8 from './assets/image8.jpg';
 import image9 from './assets/image9.jpg';
 import image10 from './assets/image10.jpg';
+import image11 from './assets/image11.jpg';
+import image12 from './assets/image12.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS CSS
 
@@ -25,9 +27,11 @@ const Certifications = ({ isDarkMode }) => {
     { title: 'SQL Advanced', imageUrl: image5 },
     { title: 'Introduction To Open Source', imageUrl: image6 },
     { title: 'HHFA Data Analysis PLatform', imageUrl: image7 },
-    { title: 'Infodemic 101 WHO', imageUrl: image8 },
+    { title: 'Infodemic Management ', imageUrl: image8 },
     { title: 'Google Play Listing Certificate', imageUrl: image9 },
     { title: 'Mobile Web Development', imageUrl: image10 },
+    { title: 'Microsoft Azure Data Fundamental', imageUrl: image11 },
+    { title: 'Google Ads App Certification', imageUrl: image12 },
   ];
 
   const handleTouch = (e) => {

@@ -45,8 +45,12 @@ const Home = ({ isDarkMode }) => {
             className="md:w-1/2 text-center md:text-left"
             data-aos="fade-up" // Animasi masuk dari bawah
           >
-            <h1 className="text-3xl md:text-5xl font-bold" data-aos="fade-right">
-              Hello, I'm Azzam
+            <h1
+              className="text-3xl md:text-5xl font-bold drop-shadow-lg"
+              data-aos="fade-right"
+            >
+              Hello, I'm{' '}
+              <span className="text-sky-400 drop-shadow-lg">Azzam</span>
             </h1>
             <h2
               className={`text-2xl md:text-4xl font-semibold mt-4 ${roleClass}`}
