@@ -5,13 +5,13 @@ import 'aos/dist/aos.css'; // Import stylesheet AOS
 import '../css/Home.css';
 
 const Home = ({ isDarkMode }) => {
-  const roles = ['Web Developer', 'Data Analyst', 'UI/UX Designer'];
+  const roles = ['Frontend Dev', 'Web Developer']; // Update roles
   const [currentRole, setCurrentRole] = useState(0);
   const [roleClass, setRoleClass] = useState('role-enter');
   const [roleChangeCount, setRoleChangeCount] = useState(0);
 
   useEffect(() => {
-    // Inisialisasi AOS
+
     AOS.init({
       duration: 1000, // Durasi animasi
       easing: 'ease-in-out', // Easing animasi

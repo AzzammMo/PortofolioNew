@@ -13,6 +13,7 @@ import image9 from './assets/image9.jpg';
 import image10 from './assets/image10.jpg';
 import image11 from './assets/image11.jpg';
 import image12 from './assets/image12.jpg';
+import image13 from './assets/image13.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS CSS
 
@@ -20,9 +21,9 @@ const Certifications = ({ isDarkMode }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const certifications = [
-    { title: 'Big Data Analyst', imageUrl: image1 },
-    { title: 'Program dengan Transact SQL', imageUrl: image2 },
-    { title: 'Developer Track Chatbot Smojo Languange', imageUrl: image3 },
+    { title: 'Dasar Implementasi Kecerdasan Artifisial', imageUrl: image1 },
+    { title: 'Frontend Web Development', imageUrl: image2 },
+    { title: 'Master Backend Development', imageUrl: image3 },
     { title: 'Python Essentials 1', imageUrl: image4 },
     { title: 'SQL Advanced', imageUrl: image5 },
     { title: 'Introduction To Open Source', imageUrl: image6 },
@@ -32,6 +33,7 @@ const Certifications = ({ isDarkMode }) => {
     { title: 'Mobile Web Development', imageUrl: image10 },
     { title: 'Microsoft Azure Data Fundamental', imageUrl: image11 },
     { title: 'Google Ads App Certification', imageUrl: image12 },
+    { title: 'Big Data', imageUrl: image13 },
   ];
 
   const handleTouch = (e) => {

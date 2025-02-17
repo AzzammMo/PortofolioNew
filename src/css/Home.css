@@ -2,7 +2,7 @@
 .role-enter {
   transform: translateX(-100%);  /* Mulai dari luar kiri */
   opacity: 0;  /* Mulai transparan */
-  animation: enterAnimation 1s forwards; /* Menggunakan animasi enterAnimation */
+  animation: enterAnimation 1s forwards, glow 1.5s ease-in-out infinite; /* Menggunakan animasi enterAnimation dan glow */
 }
 
 /* Animasi untuk teks yang keluar ke kanan */
@@ -35,5 +35,19 @@
     opacity: 0;
   }
 }
+
+/* Efek menyala */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00; /* Hijau */
+  }
+  50% {
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00; /* Kuning */
+  }
+  100% {
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00; /* Hijau */
+  }
+}
+
 
 
