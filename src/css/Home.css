@@ -1,8 +1,14 @@
-/* Animasi untuk teks yang bergerak masuk dari kiri */
+/* Animasi untuk teks yang bergerak masuk dari kiri dengan efek gradasi warna yang berubah-ubah */
 .role-enter {
-  transform: translateX(-100%);  /* Mulai dari luar kiri */
+  transform: translateX(100%);  /* Mulai dari luar kanan */
   opacity: 0;  /* Mulai transparan */
-  animation: enterAnimation 1s forwards, glow 1.5s ease-in-out infinite; /* Menggunakan animasi enterAnimation dan glow */
+  animation: enterAnimation 1s forwards, colorWalk 3s linear infinite;
+  font-weight: 900;  /* Menambahkan ketebalan pada teks, lebih tebal */
+  color: transparent; /* Teks tetap transparan agar gradasi warna terlihat */
+  background: linear-gradient(90deg, red, yellow, green);
+  background-size: 300% 100%; /* Membuat gradasi lebih besar untuk memberi ruang gerak */
+  -webkit-background-clip: text;
+  background-clip: text; /* Mengaplikasikan gradasi pada teks saja */
 }
 
 /* Animasi untuk teks yang keluar ke kanan */
@@ -15,7 +21,7 @@
 /* Definisikan animasi "enter" (masuk dari kiri) */
 @keyframes enterAnimation {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
   }
   100% {
@@ -36,18 +42,13 @@
   }
 }
 
-/* Efek menyala */
-@keyframes glow {
+/* Efek gradasi bergerak antara merah, kuning, dan hijau di dalam teks */
+@keyframes colorWalk {
   0% {
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00; /* Hijau */
-  }
-  50% {
-    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00; /* Kuning */
+    background-position: 300% 0;
   }
   100% {
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00; /* Hijau */
+    background-position: 0 0;
   }
 }
-
-
-
+  
