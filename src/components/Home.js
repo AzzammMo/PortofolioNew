@@ -3,7 +3,9 @@ import Icon from './assets/Icon.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// ✅ Pindahkan ke luar component (stabil, bukan dependency lagi)
+// =========================
+// Static Data (Stable)
+// =========================
 const ROLES = ['Frontend Dev', 'Web Developer'];
 
 const Home = ({ isDarkMode }) => {
@@ -12,7 +14,7 @@ const Home = ({ isDarkMode }) => {
   const [time, setTime] = useState(new Date());
 
   // =========================
-  // AOS Init (Run Once)
+  // AOS Initialization
   // =========================
   useEffect(() => {
     AOS.init({
@@ -23,7 +25,7 @@ const Home = ({ isDarkMode }) => {
   }, []);
 
   // =========================
-  // Clock Interval
+  // Live Clock
   // =========================
   useEffect(() => {
     const clockInterval = setInterval(() => {
@@ -34,7 +36,7 @@ const Home = ({ isDarkMode }) => {
   }, []);
 
   // =========================
-  // Role Animation Interval
+  // Role Animation
   // =========================
   useEffect(() => {
     const roleInterval = setInterval(() => {
@@ -71,19 +73,26 @@ const Home = ({ isDarkMode }) => {
 
   const timeParts = formatTimeParts(time);
 
+  // =========================
+  // Dynamic Styling
+  // =========================
+  const digitTextColor = isDarkMode
+    ? 'text-yellow-400 drop-shadow-[0_0_6px_rgba(250,204,21,0.8)]'
+    : 'text-sky-900 drop-shadow-[0_0_6px_rgba(14,165,233,0.7)]';
+
+  const backgroundClass = isDarkMode
+    ? 'bg-gray-900 text-white'
+    : 'bg-gradient-to-br from-blue-500 via-sky-500 to-blue-600 text-white';
+
   return (
     <section
       id="home"
-      className={`min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-20 pt-24 ${
-        isDarkMode
-          ? 'bg-gray-900 text-white'
-          : 'bg-gradient-to-br from-blue-500 via-sky-500 to-blue-600 text-white'
-      }`}
+      className={`min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-20 pt-24 ${backgroundClass}`}
     >
       <div className="w-full max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-14">
 
-          {/* LEFT SIDE */}
+          {/* ================= LEFT SIDE ================= */}
           <div className="md:w-1/2 text-center md:text-left space-y-6">
 
             <div data-aos="fade-right">
@@ -101,9 +110,10 @@ const Home = ({ isDarkMode }) => {
               </h2>
             </div>
 
-            {/* DIGITAL CLOCK */}
+            {/* ================= DIGITAL CLOCK ================= */}
             <div className="flex flex-col items-center md:items-start gap-4 mt-4">
 
+              {/* Time */}
               <div className="flex items-center gap-2 sm:gap-3">
                 {timeParts.map((char, index) =>
                   char === ':' ? (
@@ -128,12 +138,11 @@ const Home = ({ isDarkMode }) => {
                       "
                     >
                       <span
-                        className="
+                        className={`
                           text-lg sm:text-xl md:text-3xl
                           font-bold
-                          text-sky-900
-                          drop-shadow-[0_0_6px_rgba(14,165,233,0.7)]
-                        "
+                          ${digitTextColor}
+                        `}
                       >
                         {char}
                       </span>
@@ -142,13 +151,14 @@ const Home = ({ isDarkMode }) => {
                 )}
               </div>
 
+              {/* Date */}
               <div className="text-xs sm:text-sm md:text-base text-sky-100 capitalize tracking-wide text-center md:text-left">
                 {formatDate(time)}
               </div>
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* ================= RIGHT SIDE ================= */}
           <div
             className="md:w-1/2 flex justify-center"
             data-aos="zoom-in"
