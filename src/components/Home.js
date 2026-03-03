@@ -1,74 +1,154 @@
 import React, { useEffect, useState } from 'react';
-import Icon from './assets/Icon.png'; // Import gambar
-import AOS from 'aos'; // Import AOS
-import 'aos/dist/aos.css'; // Import stylesheet AOS
-import '../css/Home.css';
+import Icon from './assets/Icon.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Home = ({ isDarkMode }) => {
-  const roles = ['Frontend Dev', 'Web Developer']; // Update roles
+  const roles = ['Frontend Dev', 'Web Developer'];
   const [currentRole, setCurrentRole] = useState(0);
-  const [roleClass, setRoleClass] = useState('role-enter');
-  const [roleChangeCount, setRoleChangeCount] = useState(0);
+  const [roleClass, setRoleClass] = useState('opacity-100 translate-y-0');
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-
     AOS.init({
-      duration: 1000, // Durasi animasi
-      easing: 'ease-in-out', // Easing animasi
-      once: true, // Hanya sekali animasi saat elemen muncul
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
     });
 
-    const interval = setInterval(() => {
-      setRoleClass('role-exit');
-      setTimeout(() => {
-        setCurrentRole((prevRole) => (prevRole + 1) % roles.length);
-        setRoleClass('role-enter');
-        setRoleChangeCount((prevCount) => prevCount + 1);
-      }, 1000);
+    const clockInterval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
 
-      if (roleChangeCount === 9) {
-        clearInterval(interval);
-      }
+    const roleInterval = setInterval(() => {
+      setRoleClass('opacity-0 translate-y-2');
+      setTimeout(() => {
+        setCurrentRole((prev) => (prev + 1) % roles.length);
+        setRoleClass('opacity-100 translate-y-0');
+      }, 400);
     }, 3500);
 
-    return () => clearInterval(interval);
-  }, [roleChangeCount]);
+    return () => {
+      clearInterval(clockInterval);
+      clearInterval(roleInterval);
+    };
+  }, []);
+
+  const formatTimeParts = (date) => {
+    const h = String(date.getHours()).padStart(2, '0');
+    const m = String(date.getMinutes()).padStart(2, '0');
+    const s = String(date.getSeconds()).padStart(2, '0');
+    return [...h, ':', ...m, ':', ...s];
+  };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('id-ID', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
+  const timeParts = formatTimeParts(time);
 
   return (
     <section
       id="home"
-      className={`h-screen flex flex-col items-center justify-center px-6 md:px-20 pt-24 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-blue-500 text-white'}`}
+      className={`min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-20 pt-24 ${
+        isDarkMode
+          ? 'bg-gray-900 text-white'
+          : 'bg-gradient-to-br from-blue-500 via-sky-500 to-blue-600 text-white'
+      }`}
     >
-      <div className="w-full max-w-3xl">
-        <div className="flex flex-col items-center md:flex-row md:items-center md:justify-center">
-          <div
-            className="md:w-1/2 text-center md:text-left"
-            data-aos="fade-up" // Animasi masuk dari bawah
-          >
-            <h1
-              className="text-3xl md:text-5xl font-bold drop-shadow-lg"
-              data-aos="fade-right"
-            >
-              Hello, I'm{' '}
-              <span className="text-sky-400 drop-shadow-lg">Azzam</span>
-            </h1>
-            <h2
-              className={`text-2xl md:text-4xl font-semibold mt-4 ${roleClass}`}
-              data-aos="fade-left" // Animasi muncul dari kiri
-            >
-              {roles[currentRole]}
-            </h2>
+      <div className="w-full max-w-6xl">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-14">
+
+          {/* LEFT SIDE */}
+          <div className="md:w-1/2 text-center md:text-left space-y-6">
+
+            <div data-aos="fade-right">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight">
+                Hello, I'm{' '}
+                <span className="text-blue-800 font-semibold drop-shadow-lg">Azzam</span>
+              </h1>
+
+              <h2
+                className={`text-xl sm:text-2xl md:text-4xl font-semibold mt-3 transition-all duration-500 ${roleClass}`}
+              >
+                {roles[currentRole]}
+              </h2>
+            </div>
+
+            {/* ===== RESPONSIVE DIGITAL CLOCK ===== */}
+            <div className="flex flex-col items-center md:items-start gap-4 mt-4">
+
+              {/* DIGIT CONTAINER */}
+              <div className="flex items-center gap-2 sm:gap-3">
+
+                {timeParts.map((char, index) =>
+                  char === ':' ? (
+                    <span
+                      key={index}
+                      className="text-xl sm:text-2xl md:text-4xl font-bold text-sky-200/80"
+                    >
+                      :
+                    </span>
+                  ) : (
+                    <div
+                      key={index}
+                      className="
+                        w-10 h-12
+                        sm:w-12 sm:h-14
+                        md:w-16 md:h-20
+                        flex items-center justify-center
+                        rounded-lg sm:rounded-xl
+                        bg-white/15
+                        backdrop-blur-md
+                        shadow-md
+                      "
+                    >
+                      <span
+                        className="
+                          text-lg sm:text-xl md:text-3xl
+                          font-bold
+                          text-sky-800
+                          drop-shadow-[0_0_6px_rgba(14,165,233,0.7)]
+                        "
+                      >
+                        {char}
+                      </span>
+                    </div>
+                  )
+                )}
+              </div>
+
+              {/* DATE */}
+              <div className="text-xs sm:text-sm md:text-base text-sky-100 capitalize tracking-wide text-center md:text-left">
+                {formatDate(time)}
+              </div>
+            </div>
           </div>
+
+          {/* RIGHT SIDE */}
           <div
-            className="mt-8 md:mt-0 md:w-1/2 flex items-center justify-center"
-            data-aos="zoom-in" // Animasi zoom in
+            className="md:w-1/2 flex justify-center"
+            data-aos="zoom-in"
           >
             <img
               src={Icon}
               alt="Profile"
-              className="w-full h-full object-cover"
+              className="
+                w-60 sm:w-72 md:w-96
+                
+                
+                
+                hover:scale-105
+                transition duration-500
+              "
             />
           </div>
+
         </div>
       </div>
     </section>

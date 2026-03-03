@@ -1,59 +1,85 @@
-import React, { useState, useEffect } from 'react';
-import AOS from 'aos'; // Import AOS
-import 'aos/dist/aos.css'; // Import AOS CSS
-import project5 from './assets/project5.png';
-import project2 from './assets/project2.png';
-import project3 from './assets/project3.png';
-import project1 from './assets/project1.png';
-import project4 from './assets/project4.png';
-import project6 from './assets/project6.png';
-
+import React, { useState, useEffect } from "react";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS CSS
+import project5 from "./assets/project5.png";
+import project2 from "./assets/project2.png";
+import project3 from "./assets/project3.png";
+import project1 from "./assets/project1.png";
+import project4 from "./assets/project4.png";
+import project6 from "./assets/project6.png";
+import project7 from "./assets/project7.png";
+import project8 from "./assets/project8.png";
 
 // Dummy project data
 const projects = [
   {
     id: 1,
-    title: 'Website - SobatTani',
-    description: 'solutions for creating agricultural regeneration by realizing the competitiveness of young farmers progressing through food and feed technology available on this website.',
+    title: "Website - SobatTani",
+    description:
+      "solutions for creating agricultural regeneration by realizing the competitiveness of young farmers progressing through food and feed technology available on this website.",
     image: project1,
-    link: 'https://github.com/username/project1',
+    link: "https://github.com/username/project1",
   },
   {
     id: 2,
-    title: 'Website - Inventy',
-    description: 'suppliers of necessities from factories directly to intermediary shops without any benefit so that people can enjoy affordable distribution prices for re-commercial use.',
+    title: "Website - Inventy",
+    description:
+      "suppliers of necessities from factories directly to intermediary shops without any benefit so that people can enjoy affordable distribution prices for re-commercial use.",
     image: project2,
-    link: 'https://github.com/username/project2',
+    link: "https://github.com/username/project2",
   },
   {
     id: 3,
-    title: 'Website - Monitoring TPS Surabaya',
-    description: 'This landfill monitoring is assumed to be the final disposal of community waste which will be useful as a forum for information in choosing a waste disposal site.',
+    title: "Website - Monitoring TPS Surabaya",
+    description:
+      "This landfill monitoring is assumed to be the final disposal of community waste which will be useful as a forum for information in choosing a waste disposal site.",
     image: project3,
-    link: 'https://github.com/username/project3',
+    link: "https://github.com/username/project3",
   },
   {
     id: 4,
-    title: 'Website - Absensi Face Recognition GPS',
-    description: 'The employee attendance website uses camera scans and the QR code will be generated automatically and detects whereabouts via GPS, making it easier for employees to take attendance quickly, easily and efficiently.',
+    title: "Website - Absensi Face Recognition GPS",
+    description:
+      "The employee attendance website uses camera scans and the QR code will be generated automatically and detects whereabouts via GPS, making it easier for employees to take attendance quickly, easily and efficiently.",
     image: project4,
-    link: 'https://github.com/username/project4',
+    link: "https://github.com/username/project4",
   },
   {
     id: 5,
-    title: 'UI Design - HydrateX',
+    title: "UI Design - HydrateX",
     description: `This website is designed to help users in regulating water levels in their bodies effectively
   while monitoring other body health metrics such as heart rate, calories, and sleeping time. By utilizing the latest technology, HydrateX will provide a comprehensive solution to support a healthy and active lifestyle.`,
     image: project5,
-    link: 'https://github.com/username/project5',
+    link: "https://github.com/username/project5",
   },
-  
+
   {
     id: 6,
-    title: 'Website - E-RCE',
-    description: 'emergency services for people who need help such as traffic accidents, fires, and ambulance services. Apart from that, this application can also be an information system for organizations operating in the humanitarian sector such as PMI, PSC, and other private organizations.',
+    title: "Website - E-RCE",
+    description:
+      "emergency services for people who need help such as traffic accidents, fires, and ambulance services. Apart from that, this application can also be an information system for organizations operating in the humanitarian sector such as PMI, PSC, and other private organizations.",
     image: project6,
-    link: 'https://github.com/username/project6',
+    link: "https://github.com/username/project6",
+  },
+
+  {
+    id: 7,
+    title:
+      "Stunlator - Stunting Data Collection & Calculation System in Indonesia",
+    description:
+      "STUNLATOR Web is a web-based stunting data management and calculation system that implements region based data input at the district/city (Kabupaten/Kota) level using dynamically retrieved administrative data. The system allows users to input actual and target values for five key indicators stunting prevalence, prelacteal feeding, exclusive breastfeeding, complementary feeding (MP-ASI), and growth monitoring which are then validated and processed server-side.",
+    image: project7,
+    link: "https://github.com/username/project7",
+  },
+
+  {
+    id: 8,
+    title:
+      "Web Based Flood Monitoring System",
+    description:
+      "Community users are able to submit flood reports by providing a report title, photographic evidence, and location data that is automatically captured through real-time map integration, eliminating the need for manual address input. Users can track the history of their submitted reports, monitor the confirmation status of floods that have been validated by administrators, and access flood-prone area analysis based on report accumulation, where areas with more than five reports are classified as flood-prone. In addition, the system provides flood potential analysis derived from the total number of identified flood-prone areas. Users can also communicate directly with regional administrators through a messaging feature for follow-up reporting or clarification purposes.",
+    image: project8,
+    link: "https://github.com/username/project8",
   },
 ];
 
@@ -66,19 +92,19 @@ const Project = ({ isDarkMode }) => {
   useEffect(() => {
     AOS.init({
       duration: 1000, // Duration of the animation
-      easing: 'ease-in-out', // Easing function
+      easing: "ease-in-out", // Easing function
       once: true, // Animation happens only once
       offset: 200, // Offset to trigger animation a little earlier or later
     });
 
     // Refresh AOS on window resize to trigger animations again for responsiveness
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       AOS.refresh();
     });
 
     // Clean up event listener
     return () => {
-      window.removeEventListener('resize', () => {
+      window.removeEventListener("resize", () => {
         AOS.refresh();
       });
     };
@@ -91,7 +117,9 @@ const Project = ({ isDarkMode }) => {
 
   // Function to go to the previous project in slideshow
   const prevProject = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + projects.length) % projects.length,
+    );
   };
 
   // Function to open the modal with clicked image
@@ -107,8 +135,15 @@ const Project = ({ isDarkMode }) => {
   };
 
   return (
-    <section id="Project" className={`p-8 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`} data-aos="fade-up">
-      <h2 className={`text-3xl font-bold text-center mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} data-aos="fade-up">
+    <section
+      id="Project"
+      className={`p-8 ${isDarkMode ? "bg-gray-900" : "bg-white"}`}
+      data-aos="fade-up"
+    >
+      <h2
+        className={`text-3xl font-bold text-center mb-6 ${isDarkMode ? "text-white" : "text-gray-900"}`}
+        data-aos="fade-up"
+      >
         Projects
       </h2>
 
@@ -117,7 +152,7 @@ const Project = ({ isDarkMode }) => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className={`relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-blue-500 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+            className={`relative group overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-blue-500 ${isDarkMode ? "bg-gray-800" : "bg-white"}`}
             data-aos="fade-up"
           >
             {/* Project Image */}
@@ -130,15 +165,20 @@ const Project = ({ isDarkMode }) => {
 
             {/* Project Content */}
             <div className="p-4">
-              <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-blue-600'} mb-2`} data-aos="fade-up">
+              <h3
+                className={`text-xl font-bold ${isDarkMode ? "text-white" : "text-blue-600"} mb-2`}
+                data-aos="fade-up"
+              >
                 {project.title}
               </h3>
-              <p className={`text-sm mb-4 ${isDarkMode ? 'text-white' : 'text-gray-700'}`} data-aos="fade-up">
+              <p
+                className={`text-sm mb-4 ${isDarkMode ? "text-white" : "text-gray-700"}`}
+                data-aos="fade-up"
+              >
                 {project.description}
               </p>
 
               {/* Button to open modal */}
-        
             </div>
           </div>
         ))}
@@ -146,10 +186,19 @@ const Project = ({ isDarkMode }) => {
 
       {/* Slideshow for Mobile */}
       <div className="sm:hidden relative w-full overflow-hidden">
-        <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
           {projects.map((project) => (
-            <div key={project.id} className="w-full flex-shrink-0 p-4" data-aos="fade-up">
-              <div className={`rounded-lg shadow-lg overflow-hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+            <div
+              key={project.id}
+              className="w-full flex-shrink-0 p-4"
+              data-aos="fade-up"
+            >
+              <div
+                className={`rounded-lg shadow-lg overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-white"}`}
+              >
                 {/* Project Image */}
                 <img
                   src={project.image}
@@ -160,15 +209,20 @@ const Project = ({ isDarkMode }) => {
 
                 {/* Project Content */}
                 <div className="p-4">
-                  <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-blue-600'} mb-2`} data-aos="fade-up">
+                  <h3
+                    className={`text-xl font-bold ${isDarkMode ? "text-white" : "text-blue-600"} mb-2`}
+                    data-aos="fade-up"
+                  >
                     {project.title}
                   </h3>
-                  <p className={`text-sm mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} data-aos="fade-up">
+                  <p
+                    className={`text-sm mb-4 ${isDarkMode ? "text-white" : "text-gray-900"}`}
+                    data-aos="fade-up"
+                  >
                     {project.description}
                   </p>
 
                   {/* Button to open modal */}
-                 
                 </div>
               </div>
             </div>
